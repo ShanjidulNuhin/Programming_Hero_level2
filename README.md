@@ -17,7 +17,3 @@ To practice TypeScript and improve my problem-solving and development skills ste
 ## 📌 Status
 
 Currently learning and updating regularly.
-
----
-
-Feel free to explore and follow my progress!
