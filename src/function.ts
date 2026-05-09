@@ -21,3 +21,19 @@ const add3=(num5:number,num6:number):number=>{
     return num5+num6;
 }
 console.log(add3(6,7));//this will print 13
+
+//method{define a function inside an object}
+const info={
+    name:"Shanjidul",
+    age:21,
+    balance:0,
+    addbalance(value:number){
+        const totalBalance=this.balance+=value;
+        return totalBalance;
+    }
+}
+info.addbalance(100);
+console.log(info.balance);//this will print 100
+//in this case, we have defined a method called addbalance inside the info object.
+// The addbalance method takes a number parameter called value and adds it to the balance property of the info object. 
+// It then returns the total balance after adding the value.
