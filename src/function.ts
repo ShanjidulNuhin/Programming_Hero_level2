@@ -48,3 +48,9 @@ console.log(newArr);//this will print [4,16,36,64]
 // The map method takes a callback function as an argument, which is executed for each element in the arr array. 
 // The callback function takes a number parameter called num and returns the result of multiplying num by itself. 
 // The newArr array will contain the results of applying the callback function to each element in the arr array.
+
+const farrow=(num7:number,num8:number):number=>num7+num8;
+console.log(farrow(10,20));
+//in this case, we have defined an arrow function called farrow that takes two number parameters, num7 and num8, and returns their sum. 
+// The function is defined in a concise way without using the return keyword or curly braces. 
+// The add3 function is called with the arguments 10 and 20, which will print 30 as the result.
