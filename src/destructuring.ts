@@ -27,3 +27,10 @@ console.log(fName);//this will print "Shanjidul"
 
 const{gender:myGender}=user;
 console.log(`I am a ${myGender}`);//this will print the gender
+
+//Array destructuring
+const freinds=["Rahim","Karim","Rofik"];
+const [A,B,C]=freinds;//this will destructure the elements of the freinds array and assign them to new variables A, B, and C.
+console.log(A);//this will print "Rahim"
+console.log(B);//this will print "Karim"
+console.log(C);//this will print "Rofik"
