@@ -33,3 +33,16 @@ const fahim:user={
     }
 }
 console.log(fahim);//this will print the fahim object
+
+//in arrow function
+type addFunction=(a:number,b:number)=>number;
+const add:addFunction=(a,b)=>
+     a+b;//this will return the sumetion of a and b
+console.log(`the sum of the number is ${add(5,10)}`);//this will print 15
+
+// normal function
+type mulNumber=(c:number,d:number)=>number;
+const mul:mulNumber=(c,d)=>{
+    return c*d;
+}
+console.log(`the multiplication of the number is ${mul(5,10)}`);//this will print 50
