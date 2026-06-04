@@ -41,7 +41,6 @@ console.log(getName2(null));//this will print "name is by default unknown"
 
 //this nullish coalescring operator only orks in null or undefined gluss but if i write getName2("") it will print "" because "" is not null or undefined it is an empty string. so if i want to provide a default value for empty string also then i can use ternary operator like this:
 
-
 //these are some more example of ternary operator and nullish coalescing operator:
 const loginwithternary=(islogin:boolean)=>{
     return islogin ? "You are not logged in yet" : "You are logged in";
@@ -67,5 +66,5 @@ console.log("\nmy name is " + me.name+ " and I am " + me.age + " years old");//t
 const education=me.education;
 console.log(education);//this will undefine because the education property does not exist in the me object
 //this can be crash our application.so the best way is use optional chaining operator like this:
-const education2=me?.education;
-console.log(education2);//this will print undefined but it will not crash our application because we are using optional chaining operator.
+const education1=me?.education;
+console.log(education1);//this will print undefined but it will not crash our application because we are using optional chaining operator.
