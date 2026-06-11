@@ -8,8 +8,11 @@ if ( req.url=== "/" && req.method==="GET"){
   res.writeHead(200,{"content-type":"text/plain"});
   res.end("This is root rout");
 }
+else{
+   res.writeHead(404,{"content-type":"text/plain"});
+  res.end("Can not find this rout");
+}
 })
 server.listen(5000,()=>{
   console.log("server is running");
 })
-//these are shows in terminal
