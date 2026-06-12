@@ -5,7 +5,7 @@ export const routeHandeler=(req:IncomingMessage,res:ServerResponse)=>{
   res.writeHead(200,{"content-type":"application/json"});
   res.end(JSON.stringify({message:"This is root rout"}));
 }
-else if(req.url?.startsWith("/products")){
+else if(req.url?.startsWith("/products")&& req.method==="GET"){
   res.writeHead(200,{"content-type":"application/json"});
   res.end(JSON.stringify({message:"This is Products rout"}));
 }
