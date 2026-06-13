@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { json } from "stream/consumers";
 
 const filepath=path.join(process.cwd(),'./src/database/db.json');
 export const readProduct=()=>{
@@ -9,3 +10,8 @@ export const readProduct=()=>{
     // console.log(JSON.parse(products));
     return JSON.parse(products);
 }; 
+export const insertProduct=(payload:any)=>
+{
+    console.log(JSON.stringify(payload));
+    fs.writeFileSync(filepath,JSON.stringify(payload));
+};
