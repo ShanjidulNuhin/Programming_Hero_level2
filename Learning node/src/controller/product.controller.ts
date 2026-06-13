@@ -84,7 +84,7 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
 
         products.splice(index, 1);
         insertProduct(products);
-        sendResponse(res, 200, true, "Products deleted", null);
+        sendResponse(res, 200, true, "Products deleted",);
 
     }
 }
