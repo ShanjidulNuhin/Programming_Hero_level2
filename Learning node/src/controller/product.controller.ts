@@ -3,6 +3,7 @@ import { insertProduct, readProduct } from "../service/product.service";
 import type { IProduct } from "../types/product.types";
 import { parseBody } from "../utility/parseBody";
 import { sendResponse } from "../utility/sendResponse";
+import { error } from "console";
 
 export const productController = async (req: IncomingMessage, res: ServerResponse) => {
     console.log("request", req);
@@ -14,8 +15,14 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
 
     //get all products
     if (url === "/products" && method === "GET") {
-        const products =readProduct();
-        sendResponse(res, 200, true,  "Products retrieved successfully", products);
+        try {
+            const products = readProduct();
+            return sendResponse(res, 200, true, "Products retrieved successfully", products);
+        } catch {
+            const products = readProduct();
+            return sendResponse(res, 500, false, "Something Went wrong", error);
+        }
+
     }
 
     //get single product
@@ -25,9 +32,14 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
 
         //if there is no products
         if (!product) {
-            return sendResponse(res, 404, true, "Products not found", null)
-        }
+            return sendResponse(res, 404, false, "Products not found")
+        }try{
         return sendResponse(res, 200, true, "Products shown", product);
+
+        }catch{
+            return sendResponse(res, 500, false, "Something Went wrong", error);
+
+        }
     }
 
     //Post method
