@@ -2,6 +2,7 @@ import type { IncomingMessage, ServerResponse } from "http";
 import { insertProduct, readProduct } from "../service/product.service";
 import type { IProduct } from "../types/product.types";
 import { parseBody } from "../utility/parseBody";
+import { sendResponse } from "../utility/sendResponse";
 
 export const productController = async (req: IncomingMessage, res: ServerResponse) => {
     console.log("request", req);
@@ -13,13 +14,8 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
 
     //get all products
     if (url === "/products" && method === "GET") {
-        const products = readProduct();
-        res.writeHead(200, { "content-type": "application/json" });
-        res.end(JSON.stringify({
-            message: "This is Products rout", data: products
-        })
-        );
-
+        const products =readProduct();
+        sendResponse(res, 200, true,  "Products retrieved successfully", products);
     }
 
     //get single product
@@ -29,17 +25,9 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
 
         //if there is no products
         if (!product) {
-            res.writeHead(404, { "content-type": "application/json" });
-            res.end(JSON.stringify({
-                message: "Products not found", data: null
-            })
-            );
+            return sendResponse(res, 404, true, "Products not found", null)
         }
-        res.writeHead(200, { "content-type": "application/json" });
-        res.end(JSON.stringify({
-            message: "Products shown", data: product
-        })
-        );
+        return sendResponse(res, 200, true, "Products shown", product);
     }
 
     //Post method
@@ -51,36 +39,25 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
             ...body,
         };
         products.push(newProduct)
-        // console.log(products);
         insertProduct(products);
-        res.writeHead(200, { "content-type": "application/json" });
-        res.end(JSON.stringify({
-            message: "Products added", data: products
-        })
-        );
+
+        sendResponse(res, 200, true, "Products added", newProduct);
     }
     else if (method === "PUT" && id !== null) {
         const body = await parseBody(req)
         const products = readProduct()
 
         const index = products.findIndex((p: IProduct) => p.id === id)
-        // console.log(index);
+
         if (index < 0) {
-            res.writeHead(404, { "content-type": "application/json" });
-            res.end(JSON.stringify({
-                message: "Products not found", data: null,
-            }),
-            );
+            sendResponse(res, 404, true, "Products not found", null);
         }
-        
+
         products[index] = { id: products[index].id, ...body };
 
         insertProduct(products);
-        res.writeHead(200, { "content-type": "application/json" });
-        res.end(JSON.stringify({
-            message: "Products updated", data: products[index],
-        }),
-        );
+        sendResponse(res, 200, true, "Products updated", products[index]);
+
     }
 
     //Delete
@@ -89,21 +66,13 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
         const index = products.findIndex(
             (p: IProduct) => p.id === id);
         if (index < 0) {
-            res.writeHead(404, { "content-type": "application/json" });
-            return res.end(JSON.stringify({
-                message: "Products not found",
-                data: null,
-            }),
-            );
+            sendResponse(res, 200, true, "Products not found", null);
+
         }
 
         products.splice(index, 1);
         insertProduct(products);
-        res.writeHead(200, { "content-type": "application/json" });
-        res.end(JSON.stringify({
-            message: "Products deleted", data: null,
-        }),
-        );
+        sendResponse(res, 200, true, "Products deleted", null);
 
     }
 }
