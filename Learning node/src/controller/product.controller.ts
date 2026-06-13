@@ -24,6 +24,7 @@ export const productController = (req: IncomingMessage, res: ServerResponse) => 
             message: "This is Products rout", data: products
         })
         );
+        //get single product
     }else if(method==="GET"&&id!==null){
                 const products = readProduct();
 const product = products.find((p:IProduct)=>p.id===id);
