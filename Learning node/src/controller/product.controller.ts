@@ -27,6 +27,12 @@ export const productController = (req: IncomingMessage, res: ServerResponse) => 
     }else if(method==="GET"&&id!==null){
                 const products = readProduct();
 const product = products.find((p:IProduct)=>p.id===id);
-console.log(product);
+// console.log(product);
+
+res.writeHead(200, { "content-type": "application/json" });
+        res.end(JSON.stringify({
+            message: "Products shown", data: product
+        })
+        );
     }
 }
