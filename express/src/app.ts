@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     console.log(err);
   });
   next();
-});
+})
 
 app.get('/', (req:Request, res:Response) => {
     res.status(200).json({
