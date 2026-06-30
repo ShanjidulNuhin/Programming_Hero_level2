@@ -5,3 +5,11 @@ Method -> GET - Time -> 1782747641412 - URL -> /api/user
 
 Method -> GET - Time -> 1782747654658 - URL -> /api/users
 
+
+Method -> GET - Time -> 1782748191682 - URL -> /api/Users
+
+Method -> GET - Time -> 1782748193860 - URL -> /api/Users
+
+Method -> GET - Time -> 1782748261656 - URL -> /api/user
+
+Method -> GET - Time -> 1782748292699 - URL -> /api/users
