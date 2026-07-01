@@ -4,8 +4,6 @@ import auth from "../../middleware/auth";
 
 const router =Router()
 
-
-
 router.post("/",userController.createUser);
 router.get("/",auth(),userController.getAllUser);
 router.get("/:id",userController.getSingleUser);
