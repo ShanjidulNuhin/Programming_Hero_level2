@@ -1,7 +1,7 @@
 import config from "./config";
 import express, { type Application, type Request, type Response } from "express";
 import { initDB, pool } from "./db";
-import { userRout } from "./modules/user/user.route";
+import { userRoute } from "./modules/user/user.route";
 import { profileRoute } from "./modules/profile/profile.route";
 import { authRoute } from "./modules/auth/auth.route";
 import fs from "fs";
@@ -21,7 +21,7 @@ app.get('/', (req:Request, res:Response) => {
     });
 });
 
-app.use("/api/users",userRout);
+app.use("/api/users",userRoute);
 app.use("/api/profile",profileRoute);
 app.use("/api/auth",authRoute);
 export default app;

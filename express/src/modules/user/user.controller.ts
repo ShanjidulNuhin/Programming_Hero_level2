@@ -21,7 +21,7 @@ const getAllUser = async(req: Request, res:Response)=>{
     try{
         const result = await userService.getAllUserFromDB();
         res.status(200).json({
-            success:true;
+            success:true,
             message:"Usres fetch successfully",
             data:result.rows,
         });
