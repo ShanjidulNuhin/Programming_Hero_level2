@@ -43,3 +43,17 @@ Method -> GET - Time -> 1782890771843 - URL -> /api/users/
 Method -> GET - Time -> 1782891094910 - URL -> /api/users/
 
 Method -> GET - Time -> 1782891150498 - URL -> /api/users/
+
+Method -> GET - Time -> 1783359950458 - URL -> /api/users/?Authentication=ik,umjnhbgvvgtyrgfhgggtgbgrgfgtgggggfgggbf
+
+Method -> GET - Time -> 1783359982538 - URL -> /api/users?Authentication=ik,umjnhbgvvgtyrgfhgggtgbgrgfgtgggggfgggbf
+
+Method -> GET - Time -> 1783360137505 - URL -> /api/users/
+
+Method -> POST - Time -> 1783360386564 - URL -> /api/auth/login
+
+Method -> POST - Time -> 1783360421139 - URL -> /api/auth/login
+
+Method -> GET - Time -> 1783360435288 - URL -> /api/users/
+
+Method -> GET - Time -> 1783362479800 - URL -> /api/users/

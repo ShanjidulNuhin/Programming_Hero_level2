@@ -5,8 +5,8 @@ import { pool } from "../db";
 
 const auth = () => {
     return async (req: Request, res: Response, next: NextFunction) => {
-        // console.log("This is protected route");
-        // console.log(req.headers);
+      try{
+        
         const token = req.headers.authorization;
         if (!token) {
             return res.status(401).json({
@@ -39,7 +39,11 @@ const auth = () => {
                 message: "User is not active"
             });
         } 
+        req.user=decoded;
         next();
+      }catch (error) {
+        next(error);
+      }
     };
 }
 export default auth;
