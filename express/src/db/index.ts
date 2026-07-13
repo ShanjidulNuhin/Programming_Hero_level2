@@ -15,11 +15,17 @@ export const initDB=async()=>{
             password TEXT NOT NULL,
             is_active BOOLEAN DEFAULT true,
             age INT,
+            role VARCHAR(10) DEFAULT 'users', 
 
             created_at TIMESTAMP DEFAULT NOW(),
             updated_at TIMESTAMP DEFAULT NOW()
            ) `
         );
+
+        await pool.query(`
+            ALTER TABLE users
+            ADD COLUMN IF NOT EXISTS role VARCHAR(10) DEFAULT 'users'
+        `);
 
         await pool.query(`
            CREATE TABLE if NOT EXISTS profiles(
