@@ -2,8 +2,10 @@ import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import config from "../config";
 import { pool } from "../db";
+import type { ROLES } from "../types";
 
-const auth = () => {
+
+const auth = (...roles: ROLES[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try{
         
@@ -33,12 +35,18 @@ const auth = () => {
             });
         }
 
-        if(user.is_active === false){
-            return res.status(403).json({
+        if(!user?.is_active){
+             res.status(403).json({
                 success: false,
                 message: "User is not active"
             });
         } 
+        if (roles.length && !roles.includes(user.role)) {
+             res.status(403).json({
+                success: false,
+                message: "Insufficient permissions"
+            });
+        }
         req.user=decoded;
         next();
       }catch (error) {

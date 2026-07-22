@@ -7,16 +7,24 @@ const createUserIntoDB =async(payload:IUser)=>{
 
     //password hashing
     const hashPassword=await bcrypt.hash(password,10);
-    
-     const result=await pool.query(`
+    if (role){    
+        const result=await pool.query(`
         INSERT INTO users(
         name,email,password,age,role)
-        VALUES($1,$2,$3,$4,COALESCE($5,'users'))
+        VALUES($1,$2,$3,$4)
         RETURNING *`,
     [name,email,hashPassword,age,role]);
-    delete result.rows[0].password;
+}else{
+    const result =await pool.query(`
+        INSERT INTO users(
+            name,email,password,age)
+            VALUES($1,$2,$3,$4)
+            RETURNING *`,
+        [name,email,hashPassword,age]);
+}
+//   delete result.rows[0].password;
 
-    return result;
+//     return result;
 };
 
 const getAllUserFromDB = async()=>{
